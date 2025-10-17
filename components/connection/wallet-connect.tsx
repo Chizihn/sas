@@ -2,15 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Wallet, Copy, LogOut, RefreshCw } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { useWalletStore } from "@/store/useWallet";
 import { useWalletSync } from "@/hooks/useWalletSync";
 import {
@@ -47,7 +38,6 @@ export function WalletConnect() {
     (map, wallet) => map.set(wallet.provider, wallet),
     new Map<AuthProvider, EnokiWallet>()
   );
-  const googleWallet = walletsByProvider.get("google");
 
   const copyAddress = () => {
     if (currentAccount?.address) {
@@ -85,9 +75,7 @@ export function WalletConnect() {
   };
 
   const handleGoogleConnect = () => {
-    if (googleWallet) {
-      connect({ wallet: googleWallet });
-    }
+   
   };
 
   // Show connect button if no wallet is connected
@@ -96,7 +84,7 @@ export function WalletConnect() {
       <div className="flex flex-col gap-4 items-center">
         {googleWallet ? (
           <Button
-            onClick={handleGoogleConnect}
+            onClick={handle Connect}
             className="bg-blue-600 text-white hover:bg-blue-700 border-blue-600 border-2 px-6 py-3 rounded-md font-medium"
           >
             Connect Wallet
